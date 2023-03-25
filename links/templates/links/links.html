@@ -1,0 +1,61 @@
+{% extends 'users/base.html' %}
+{% load static %}
+
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/style_index.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+
+{% block content %}
+      <div class="container">
+          {% if messages %}
+              <div class="messages">
+                  {% for message in messages %}
+                    <p>{{ message }}</p>
+                  {% endfor %}
+              </div>
+          {% endif %}
+          {% if form.errors %}
+              <div class="errors">
+                  <p>{{ form.errors }}</p>
+              </div>
+          {% endif %}
+          <div class="block-link">
+              <h2 class="h2">Создание ссылок</h2>
+              <form action="{% url 'links' user.slug %}" method="post">
+                  {% csrf_token %}
+                  <label for="{{ form.long_link.id_for_label }}">
+                      <p class="p">Длинная ссылка:</p>
+                      {{ form.long_link }}
+                  </label>
+                  <label for="{{ form.short_link.id_for_label }}">
+                      <p class="p">Сокращённая ссылка:</p>
+                      {{ form.short_link }}
+                  </label>
+                  <input type="submit" value="Создать ссылку" class="btn-submit">
+              </form>
+          </div>
+          <div class="block-link-created">
+              <h2 class="h2">Доступные ссылки</h2>
+              {% if links %}
+                  <div class="links">
+                      {% for link in links %}
+                        <p>
+                            <a href="{% url 'link_delete' user.slug link.id %}" class="link" title="Удалить ссылку">&#10006;</a>
+                            Ссылка: <a href="{{ link.long_link }}" class="link" target="_blank" title="Перейти по ссылке">/{{ link }}/</a>
+                        </p>
+                      {% endfor %}
+                  </div>
+              {% else %}
+                <h3>У вас нет доступных ссылок</h3>
+              {% endif %}
+          </div>
+      </div>
+{% endblock %}

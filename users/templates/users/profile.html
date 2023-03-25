@@ -1,0 +1,54 @@
+{% extends 'users/base.html' %}
+{% load static %}
+
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/style_index.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+
+{% block content %}
+      <div class="container">
+          {% if messages %}
+              <div class="messages">
+                  {% for message in messages %}
+                    <p>{{ message }}</p>
+                  {% endfor %}
+              </div>
+          {% endif %}
+          {% if form.errors %}
+              <div class="errors">
+                  <p>{{ form.errors }}</p>
+              </div>
+          {% endif %}
+          <div class="block-user">
+              <h2>Кабинет пользователя</h2>
+              <h4>@{{ username }}</h4>
+              <p><span>Email:</span> {{ email }}</p>
+              <button class="btn">
+                  <a href="{% url 'exit' %}" class="btn-a">Выйти из кабинета</a>
+              </button>
+          </div>
+          <div class="block-update">
+              <h2>Изменить данные пользователя</h2>
+              <form action="{% url 'profile' user.slug %}" method="post">
+                  {% csrf_token %}
+                  <label for="{{ form.username.id_for_label }}">
+                      <p>Имя пользователя:</p>
+                      {{ form.username }}
+                  </label>
+                  <label for="{{ form.email.id_for_label }}">
+                      <p>Email:</p>
+                      {{ form.email }}
+                  </label>
+                  <input type="submit" value="Обновить данные" class="btn-submit">
+              </form>
+          </div>
+      </div>
+{% endblock %}

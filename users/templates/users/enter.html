@@ -1,0 +1,49 @@
+{% extends 'users/base.html' %}
+{% load static %}
+
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/style_index.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if form.non_field_errors %}
+              <div class="errors">
+                  <p>{{ form.non_field_errors }}</p>
+              </div>
+        {% endif %}
+        <div class="enter">
+            <h2 class="h2">Авторизоваться на сайте</h2>
+            <form action="{% url 'enter' %}" method="post">
+                {% csrf_token %}
+                <label for="{{ form.username.id_for_label }}">
+                    <p class="p">Имя пользователя:</p>
+                    {{ form.username }}
+                </label>
+                <label for="{{ form.password.id_for_label }}">
+                    <p class="p">Пароль:</p>
+                    {{ form.password }}
+                </label>
+                <input type="submit" value="Войти" class="btn-submit">
+                <p class="p">Нет аккаунта?
+                    <a href="{% url 'registration' %}" class="link">Зарегистрироваться</a>
+                </p>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,163 @@
+/* Errors and Messages */
+
+.messages{
+    max-width: 400px;
+    margin: 0 auto 30px;
+    background-color: rgba(92, 184, 92, 0.5);
+    text-align: center;
+    color: green;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+
+.errors{
+    max-width: 400px;
+    margin: 0 auto 30px;
+    background-color: rgba(217, 83, 79, 0.3);
+    color: red;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+
+
+/* Profile */
+
+.block-user{
+    max-width: 300px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.block-user h4{
+    margin-bottom: 0;
+}
+
+.block-user p{
+    margin-top: 0;
+}
+
+.block-user span{
+    font-weight: 500;
+}
+
+.block-update{
+    margin-top: 70px;
+}
+
+.block-update h2{
+    text-align: center;
+}
+
+.block-update form{
+    max-width: 300px;
+    margin: 30px auto 0;
+}
+
+.block-link-created{
+    max-width: 450px;
+    margin: 70px auto 0;
+}
+
+.block-link-created h3{
+    text-align: center;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.3);
+}
+
+
+
+/* Main */
+
+main{
+    margin: 70px 0 100px;
+}
+
+.enter, .register, .block-link{
+    margin: 0 auto;
+    max-width: 450px;
+    box-shadow: 0 0 20px rgb(146, 146, 146);
+    background-color: white;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.h2{
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 40px;
+}
+
+.input{
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid rgb(146, 146, 146);
+}
+
+.input:focus{
+    outline: none;
+    border: 1px solid rgb(255, 174, 0);
+}
+
+.btn-submit{
+    margin-top: 20px;
+    width: 40%;
+    padding: 7px 0;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(255, 174, 0);
+    color: rgb(238, 238, 238);
+    font-size: 16px;
+}
+
+.register .btn-submit, .block-update .btn-submit{
+    width: 60%;
+}
+
+.btn-submit:hover{
+    cursor: pointer;
+    background-color: rgb(236, 161, 0);
+}
+
+.p{
+    margin: 20px 0 5px;
+}
+
+.link{
+    color: rgb(233, 159, 0);
+}
+
+.links .link{
+    text-decoration: none;
+}
+
+
+
+
+/* Adaptations */
+
+@media(max-width: 420px){
+    .register .btn-submit{
+        width: 100%;
+    }
+}
+
+@media(max-width: 500px){
+    .enter, .block-link {
+        width: 100%;
+    }
+
+    .enter span{
+        font-size: 14px;
+    }
+}
+
+@media(max-width: 420px){
+    .btn-submit{
+        width: 100%;
+    }
+}

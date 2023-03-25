@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+
+    <link rel="shortcut icon" href="{% static 'img/cat.ico' %}" type="image/x-icon">
+
+    {% block style %}{% endblock %}
+
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="block-flex">
+                <div class="text">
+                    <a href="{% url 'main' %}" title="На главную">
+                        <img src="{% static 'img/cat.png' %}" alt="Cat" width="140">
+                    </a>
+                    <h4 class="h4">Уберём всё лишнее из ссылки!</h4>
+                </div>
+                <ul class="nav">
+                    <li class="nav-li" title="На главную">
+                        <a href="{% url 'main' %}" class="nav-link">Главная</a>
+                    </li>
+
+                    {% if user.is_authenticated %}
+                        <li class="nav-li" title="Перейти к ссылкам">
+                            <a href="{% url 'links' user.slug %}" class="nav-link">Ссылки</a>
+                        </li>
+                        <li class="nav-li" title="Перейти в личный кабинет">
+                            <a href="{% url 'profile' user.slug %}" class="nav-link">Личный кабинет</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-li" title="Войти">
+                            <a href="{% url 'enter' %}" class="nav-link">Войти</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
